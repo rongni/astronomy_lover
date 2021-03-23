@@ -6,7 +6,7 @@ This is a Astronomy Lover app about a project for CS242
 
 ## Abstract
 ### Project Purpose
-Users can easily looking for some interesting beautiful astronomy pictures as well as some photos collected by Mars rovers. They can also collect the pictures they like into their collection page. 
+Users are able to create their own accounts to save their personl information like email, avatar, description and so on. After successfully login in, User can easily looking for some interesting beautiful astronomy pictures as well as some photos collected by Mars rovers. They can also collect the pictures they like into their collection page. 
 
 ### Project Motivation
 Currently, there's few web apps built for astronomy lovers, it is hard for astronomy amateurs to find some interesting pictures to learn about the universe they love. We want to build an easy-to-use web app for astronomy amateurs to browsing interesting astronomy pictures.
@@ -22,6 +22,7 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
 
 ## Functional Specification
 ### Features
+- Create user account with personal information
 - List view for APOD (Astronomy Picture of the Day) API, with sort and search functionalities
 - Gallery view for mars-photos (Mars Rover Photos) API, with genrne selections for Rover Cameras
 - Detail view for clicking the item
@@ -36,7 +37,7 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
     - Assume the information provided by those three APIs are all we can obtain
 
 ## Brief Timeline
-- Week 1: Create a List view and gallery view
+- Week 1: Create a List view, gallery view 
 - Week 2: Create backend for user and collection database
 - Week 3: Create frontend for user and collection database
 - Week 4: Add important message page and make the web more attractive
