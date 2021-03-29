@@ -13,8 +13,8 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
 
 ## Technical Specification
 - Platform: Webpage app (React)
-- Programming Languages: JavaScript (React for frontend, Express for backend)
-- Stylistic Conventions: Airbnb JavaScript Style Guide
+- Programming Languages: Will try use TypeScript. JavaScript as an alternative (React for frontend, Express for backend)
+- Stylistic Conventions:  TypeScript(JavaScript) Style Guide
 - SDK: Facebook SDK for React
 - IDE: Visual Studio Code
 - Tools/Interfaces: Webpage
@@ -44,41 +44,61 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
 
 ## Rubrics
 ### Week 1
+### Rongxin Ni
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
-|  List View |  5  |  0: didn't implement anything <br> +1: always display today's image at top of page <br> +2: render images as a list <br> +1: display bigger image as clicking <br> +1: display images with information provided |
-|  Query & Sort |  3  |  0: Didn't implement anything <br> +0.5: query for start date <br> +0.5: query for end date <br> +0.5: query for number of images displayed <br> +0.5: rendering notification of errors <br> +1: sort by date in both order |
-| Gallery View |  4  |  0: didn't implement anything <br> +1: render images as a gallery  <br> +1: have load more button <br> +1: display the full image as clicking <br> +1: display the image with information provided as well as clicking |
-| Genre select |  3  |  0: didn't implement anything <br> +1: implemented camera type selection <br> +1: implemented rover selection <br> +1: correctly display different camera types for differnt rovers chosen|
-|  Manual test plan for List View  |  5  |  0: Didn't implement tests <br> for every 2 manual test, gain 1 point
-|  Manual test plan for Gallery View |  5  |  0: Didn't implement tests <br> for every 2 manual test, gain 1 point
-
+|  List View |  10  |  0: didn't implement anything <br> +2: always display today's image at top of page <br> +4: render images as a list <br> +2: display bigger image as clicking <br> +2: display images with information provided |
+| Genre select |  5  |  0: didn't implement anything <br> +1: implemented camera type selection <br> +2: implemented rover selection <br> +2: correctly display different camera types for differnt rovers chosen|
+|  Manual test plan for List View  |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
+|  Manual test plan for Gallery View |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
+### Peiyi Chen
+| Category  | Total Score Allocated | Detailed Rubrics                                                            |
+|-----------|:---------:|-------------------------------------------------------------------------------|
+|  Query & Sort |  7  |  0: Didn't implement anything <br> +1: query for start date <br> +1: query for end date <br> +1: query for number of images displayed <br> +2: rendering notification of errors <br> +2: sort by date in both order |
+| Gallery View |  8  |  0: didn't implement anything <br> +2: render images as a gallery  <br> +2: have load more button <br> +2: display the full image as clicking <br> +2: display the image with information provided as well as clicking |
+|  Manual test plan for List View  |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
+|  Manual test plan for Gallery View |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
 
 ### Week 2
+### Rongxin Ni
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
-|  API for user |  4  |  0: didn't implement anything <br> +1: implemented GET API <br> +1: implemented POST API <br> +1: implemented DELETE API <br> +1: implemented PUT API |
-|  API for authencation |  3  |  0: didn't implement anything <br> +1: implemented GET API <br> +2: implemented POST API
-|  API for collection |  4  |  0: didn't implement anything <br> +1: implemented GET API <br> +1: implemented POST API <br> +1: implemented DELETE API <br> +1: implemented PUT API |
-|  API for notes |  4  |  0: didn't implement anything <br> +1: implemented GET API <br> +1: implemented POST API <br> +1: implemented DELETE API <br> +1: implemented PUT API |
-|  Unit Test for user |  5  |  0: Didn't implement tests <br> for every 2 unit tests, gain 1 point |
-|  Unit Test for collection |  5  |  0: Didn't implement tests <br> for every 2 unit tests, gain 1 point |
-
+|  API for user |  8  |  0: didn't implement anything <br> +2: implemented GET API <br> +2: implemented POST API <br> +2: implemented DELETE API <br> +2: implemented PUT API |
+|  API for collection |  7  |  0: didn't implement anything <br> +2: implemented GET API <br> +2: implemented POST API <br> +1: implemented DELETE API <br> +2: implemented PUT API |
+|  Unit Test for user |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
+|  Unit Test for collection |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
+### Peiyi Chen
+| Category  | Total Score Allocated | Detailed Rubrics                                                            |
+|-----------|:---------:|-------------------------------------------------------------------------------|
+|  API for authencation |  6  |  0: didn't implement anything <br> +2: implemented GET API <br> +4: implemented POST API
+|  API for notes |  9  |  0: didn't implement anything <br> +2: implemented GET API <br> +2: implemented POST API <br> +2: implemented DELETE API <br> +3: implemented PUT API |
+|  Unit Test for user |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
+|  Unit Test for collection |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
 ### Week 3
+### Rongxin Ni
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
-| Sign up page |  3.5  |  0: didn't implement anything <br> +1.5: correctly making post request <br> +2: render notification of errors and success |
-|  Login page |  3.5  |  0: Didn't implement anything <br> +1: correctly check the login information <br> +1.5: render notification of errors and success <br> +1: redirect to main page |
-|  Profile page |  5  |  0: Didn't implement anything <br> +1.5: successfully and neatly display user information <br> +1.5: correctly update user information <br> +2: can successfully delete the user then logout |
-|  Collection page |  3  |  0: Didn't implement anything <br> +1: display as a list view <br> +1: successfully add data <br> +1: successfully delete data |
-|  Manual test plan |  10  |  0: Didn't implement tests <br> for every 2 manual tests, gain 1 point |
-
+| Sign up page |  7  |  0: didn't implement anything <br> +3: correctly making post request <br> +4: render notification of errors and success |
+|  Collection page |  8  |  0: Didn't implement anything <br> +3: display as a list view <br> +3: successfully add data <br> +2: successfully delete data |
+|  Manual test plan |  10  |  0: Didn't implement tests <br> for every 1 manual tests, gain 1 point |
+### Peiyi Chen
+| Category  | Total Score Allocated | Detailed Rubrics                                                            |
+|-----------|:---------:|-------------------------------------------------------------------------------|
+|  Login page |  7  |  0: Didn't implement anything <br> +2: correctly check the login information <br> +3: render notification of errors and success <br> +2: redirect to main page |
+|  Profile page |  8  |  0: Didn't implement anything <br> +3: successfully and neatly display user information <br> +3: correctly update user information <br> +2: can successfully delete the user then logout |
+|  Manual test plan |  10  |  0: Didn't implement tests <br> for every 1 manual tests, gain 1 point |
 ### Week 4
+### Rongxin Ni
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
-|  Notes render |  5  |  0: Didn't implement anything <br> +2: successfully render notes as clicking the image <br> +1: successfully add notes <br> +1: successfully delete notes <br> +1: successfully update notes |
-|  Message API |  4  |  0: Didn't implement anything <br> +1: implemented GET API <br> +2: implemented POST API <br> +1: implemented DELETE API |
-|  Message Page |  3  |  0: Didn't implement anything <br> +1: correctly render messages recieved <br> +1: correctly delete messages <br> +1: implemented notification alert |
-|  More Attractive Webpage |  3  |  0: Didn't implement anything <br> for every 1 feature updates, gain 1 point |
-|  Unit Test for API |  5  |  0: Didn't implement tests  <br> for every 2 unit tests, gain 1 point |
-|  Manual test plan for webpage |  5  |  0: Didn't implement tests  <br> for every 2 unit tests, gain 1 point |
+|  Notes render |  9  |  0: Didn't implement anything <br> +3: successfully render notes as clicking the image <br> +2: successfully add notes <br> +2: successfully delete notes <br> +2: successfully update notes |
+|  More Attractive Webpage |  6  |  0: Didn't implement anything <br> for every 1 feature updates, gain 2 point |
+|  Unit Test for API |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
+|  Manual test plan for webpage |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
+### Peiyi Chen
+| Category  | Total Score Allocated | Detailed Rubrics                                                            |
+|-----------|:---------:|-------------------------------------------------------------------------------|
+|  Message API |  8  |  0: Didn't implement anything <br> +2: implemented GET API <br> +4: implemented POST API <br> +2: implemented DELETE API |
+|  Message Page |  7  |  0: Didn't implement anything <br> +3: correctly render messages recieved <br> +2: correctly delete messages <br> +2: implemented notification alert |
+|  Unit Test for API |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
+|  Manual test plan for webpage |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
