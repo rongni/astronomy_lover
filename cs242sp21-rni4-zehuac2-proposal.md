@@ -44,14 +44,18 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
 
 ## Rubrics
 ### Week 1
-### Rongxin Ni
+### Peiyi Chen
+https://docs.google.com/spreadsheets/d/1rJYXb9Dy5TpzmgcAWwOFfoqln_ctiStIwKdr5sXhVAw/edit#gid=1203283929
+
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  List View |  10  |  0: didn't implement anything <br> +2: always display today's image at top of page <br> +4: render images as a list <br> +2: display bigger image as clicking <br> +2: display images with information provided |
 | Genre select |  5  |  0: didn't implement anything <br> +1: implemented camera type selection <br> +2: implemented rover selection <br> +2: correctly display different camera types for differnt rovers chosen|
 |  Manual test plan for List View  |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
 |  Manual test plan for Gallery View |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
-### Peiyi Chen
+### Rongxin Ni
+https://docs.google.com/spreadsheets/d/1aPjQPcUGWVanlv78PQ3dYw6q6mCK--CDJWql9XQrUtU/edit#gid=1203283929
+
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  Query & Sort |  7  |  0: Didn't implement anything <br> +1: query for start date <br> +1: query for end date <br> +1: query for number of images displayed <br> +2: rendering notification of errors <br> +2: sort by date in both order |
@@ -60,42 +64,48 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
 |  Manual test plan for Gallery View |  5  |  0: Didn't implement tests <br> for every 1 manual test, gain 1 point
 
 ### Week 2
-### Rongxin Ni
+### Peiyi Chen
+https://docs.google.com/spreadsheets/d/1CmGbaTjVyHL07xwFFEt9D-jAbjZ6cs62HNC6hGLEbM4/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  API for user |  8  |  0: didn't implement anything <br> +2: implemented GET API <br> +2: implemented POST API <br> +2: implemented DELETE API <br> +2: implemented PUT API |
 |  API for collection |  7  |  0: didn't implement anything <br> +2: implemented GET API <br> +2: implemented POST API <br> +1: implemented DELETE API <br> +2: implemented PUT API |
 |  Unit Test for user |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
 |  Unit Test for collection |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
-### Peiyi Chen
+### Rongxin Ni
+https://docs.google.com/spreadsheets/d/1T4FeneBTeJMi1Wts1RYTxMHdsdlKvJHjdyiOcOyV5Ys/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  API for authencation |  6  |  0: didn't implement anything <br> +2: implemented GET API <br> +4: implemented POST API
 |  API for notes |  9  |  0: didn't implement anything <br> +2: implemented GET API <br> +2: implemented POST API <br> +2: implemented DELETE API <br> +3: implemented PUT API |
-|  Unit Test for user |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
-|  Unit Test for collection |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
+|  Unit Test for authencation |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
+|  Unit Test for notes |  5  |  0: Didn't implement tests <br> for every 1 unit tests, gain 1 point |
 ### Week 3
-### Rongxin Ni
+### Peiyi Chen 
+https://docs.google.com/spreadsheets/d/1M0h34eg15wNS_BmeK3Po6szTo3QOSjlseaJkBu_8KBU/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 | Sign up page |  7  |  0: didn't implement anything <br> +3: correctly making post request <br> +4: render notification of errors and success |
 |  Collection page |  8  |  0: Didn't implement anything <br> +3: display as a list view <br> +3: successfully add data <br> +2: successfully delete data |
 |  Manual test plan |  10  |  0: Didn't implement tests <br> for every 1 manual tests, gain 1 point |
-### Peiyi Chen
+### Rongxin Ni
+https://docs.google.com/spreadsheets/d/1utiqs-8wUbLCuGeWNS0cYy-kRKYI44ctM_tth7E_3iY/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  Login page |  7  |  0: Didn't implement anything <br> +2: correctly check the login information <br> +3: render notification of errors and success <br> +2: redirect to main page |
 |  Profile page |  8  |  0: Didn't implement anything <br> +3: successfully and neatly display user information <br> +3: correctly update user information <br> +2: can successfully delete the user then logout |
 |  Manual test plan |  10  |  0: Didn't implement tests <br> for every 1 manual tests, gain 1 point |
 ### Week 4
-### Rongxin Ni
+### Peiyi Chen
+https://docs.google.com/spreadsheets/d/1f05OsGqw4MYJsMgao5kRHMQdOcmL0Uq5YCpiAPIgjLE/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  Notes render |  9  |  0: Didn't implement anything <br> +3: successfully render notes as clicking the image <br> +2: successfully add notes <br> +2: successfully delete notes <br> +2: successfully update notes |
 |  More Attractive Webpage |  6  |  0: Didn't implement anything <br> for every 1 feature updates, gain 2 point |
 |  Unit Test for API |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
 |  Manual test plan for webpage |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
-### Peiyi Chen
+### Rongxin Ni 
+https://docs.google.com/spreadsheets/d/1icHquxlWH3wfYjcVl-ndNTqt9XMEkl3PsdR3itomvJg/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  Message API |  8  |  0: Didn't implement anything <br> +2: implemented GET API <br> +4: implemented POST API <br> +2: implemented DELETE API |
