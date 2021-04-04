@@ -15,6 +15,9 @@ const NavbarItem = () => {
 					<Nav.Link as={Link} to='/gallery'>
 						Gallery
 					</Nav.Link>
+					<Nav.Link as={Link} to='/test'>
+						Test
+					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
