@@ -12,11 +12,8 @@ const NavbarItem = () => {
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='mr-auto'>
-					<Nav.Link as={Link} to='/gallery'>
+					<Nav.Link as={Link} to='/nasagallery'>
 						Gallery
-					</Nav.Link>
-					<Nav.Link as={Link} to='/test'>
-						Test
 					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>

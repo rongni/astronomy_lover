@@ -2,8 +2,7 @@ import React from "react";
 import NavbarItem from './components/navbar_item';
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/home";
-import ImageGallery from "./components/test"
-import { NASAGallery } from "./components/gallery";
+import NASAGallery from "./components/nasa_gallery"
 import "./App.css";
 
 export default function App() {
@@ -15,15 +14,10 @@ export default function App() {
 					<p1>Home</p1>
 					<Home />
 				</Route>
-				<Route path='/gallery'>
+				<Route path='/nasagallery'>
 					<span> </span>
 					<p2> Gallery</p2>
 					<NASAGallery />
-				</Route>
-				<Route path='/test'>
-					<span> </span>
-					<p2> Test</p2>
-					<ImageGallery />
 				</Route>
 			</Switch>
 		</div>
