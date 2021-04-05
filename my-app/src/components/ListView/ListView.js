@@ -8,8 +8,7 @@ import Order from './Order';
 import DateSelect from './DateSelect';
 import CountForm from './CountForm';
 
-// const api_key = process.env.NASA_KEY;
-const api_key = "55gWSlDn1f5YKdU7TSVRTeFlYch1ZTUdtLxNaiOW"
+const api_key = process.env.NASA_KEY;
 
 function ListView() {
     const [photoDataList, setPhotoDataList] = useState(null);
@@ -53,21 +52,44 @@ function ListView() {
     const handleDateSubmit =  (event) => {
         event.preventDefault()
         const start_date_list = start_date.split('-')
+        const start_yyyy = start_date_list[0];
+        const start_mm = start_date_list[1];
+        const start_dd = start_date_list[2];
         const end_date_list = end_date.split('-')
-        if (start_date_list.length !==3 || start_date_list[0].length !== 4 || 
-            start_date_list[1].length !== 2 || start_date_list[2].length !== 2 ||
-            end_date_list.length !== 3 || end_date_list[0].length !== 4 || 
-            end_date_list[1].length !== 2 || end_date_list[2].length !== 2) {
+        const end_yyyy = end_date_list[0];
+        const end_mm = end_date_list[1];
+        const end_dd = end_date_list[2];
+        if (start_date_list.length !==3 || start_yyyy.length !== 4 || 
+            start_mm.length !== 2 || start_dd.length !== 2 ||
+            end_date_list.length !== 3 || end_yyyy.length !== 4 || 
+            end_mm.length !== 2 || end_dd.length !== 2) {
                 setError('Needs in form yyyy-mm-dd')
                 return
         }
 
-        if (/^-?\d+$/.test(start_date_list[0]) === false || /^-?\d+$/.test(start_date_list[1]) === false 
-            || /^-?\d+$/.test(start_date_list[2]) === false || /^-?\d+$/.test(end_date_list[0]) === false 
-            || /^-?\d+$/.test(end_date_list[1]) === false || /^-?\d+$/.test(end_date_list[2]) === false) {
+        if (/^-?\d+$/.test(start_yyyy) === false || /^-?\d+$/.test(start_mm) === false 
+            || /^-?\d+$/.test(start_dd) === false || /^-?\d+$/.test(end_yyyy) === false 
+            || /^-?\d+$/.test(end_mm) === false || /^-?\d+$/.test(end_dd) === false) {
                 setError('Needs in form yyyy-mm-dd with integers')
                 return
         }
+        
+
+        if (end_yyyy < start_yyyy || (end_yyyy === start_yyyy && end_mm < start_mm)
+            || (end_yyyy === start_yyyy && end_mm === start_mm && end_dd < start_dd)) {
+            setError('Needs a valid input')
+        }
+
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth()+1;
+        let yyyy = today.getFullYear();
+
+        if (end_yyyy > yyyy || (end_yyyy === yyyy && end_mm > mm)
+            || (end_yyyy === yyyy && end_mm === mm && end_dd > dd)) {
+            setError('Needs a valid input')
+        }
+
         setError('')
         fetchPhoto();
         async function fetchPhoto() {
