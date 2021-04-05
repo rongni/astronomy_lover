@@ -8,7 +8,25 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { slice, concat } from 'lodash';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { createMuiTheme } from '@material-ui/core'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import moment from 'moment';
 const LIMIT = 20;
+const customTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: deepPurple[500],
+            light: deepPurple[500],
+            dark: deepPurple[500],
+        },
+        secondary: {
+            main: deepPurple[500],
+        },
+    },
+})
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -32,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
         "& li.Mui-selected:hover": {
             background: deepPurple[500]
         }
+    },
+    input: {
+        color: deepPurple[500],
     },
     select: {
         minWidth: 200,
@@ -87,6 +108,12 @@ export default function NASAGallery() {
     const [Length, setLength] = useState(0);
     const [val, setVal] = useState('fhaz');
     const [rover, setRover] = useState('curiosity');
+    const [selectedDate, setSelectedDate] = useState(new Date('2016-06-03'));
+    const [dateVal, setDateVal] = useState('');
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
     const captionStyle = {
         backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -132,7 +159,7 @@ export default function NASAGallery() {
         async function fetchPhoto() {
             const res = await fetch(
                 // we'll update the KEYHERE soon!
-                `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=${apiKey}&earth_date=2016-6-3 `
+                `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=${apiKey}&earth_date=2016-06-03 `
             );
             const data = await res.json();
             setLength(Object.keys(data[['photos']]).length);
@@ -145,17 +172,33 @@ export default function NASAGallery() {
 
     const handleSumbit = (evt) => {
         evt.preventDefault();
-        fetchPhoto();
         setImageList([])
+        setDateVal('')
+        setDateVal(moment(selectedDate).format('YYYY-MM-DD'))
+        console.log(dateVal)
+        fetchPhoto();
 
         async function fetchPhoto() {
-            const res = await fetch(
-                // we'll update the KEYHERE soon!
-                `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
-            );
-            const data = await res.json();
-            setLength(Object.keys(data[['photos']]).length);
-            setData(data[['photos']])
+            if (dateVal) {
+                const res = await fetch(
+                    // we'll update the KEYHERE soon!
+                    `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${apiKey}&earth_date=${dateVal} `
+                );
+                const data = await res.json();
+                setLength(Object.keys(data[['photos']]).length);
+                setData(data[['photos']])
+
+            } else {
+                const res = await fetch(
+                    // we'll update the KEYHERE soon!
+                    `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
+                );
+                const data = await res.json();
+                setLength(Object.keys(data[['photos']]).length);
+                setData(data[['photos']])
+
+            }
+
         }
     };
     const customTagStyle = {
@@ -269,36 +312,47 @@ export default function NASAGallery() {
                     <MenuItem value={'navcam'}>Navigation Camera</MenuItem>
                 </Select>
             </FormControl>
+            <MuiThemeProvider theme={customTheme}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        className={classes.button}
+                        disableToolbar
+                        variant="inline"
+                        format="yyyy-MM-dd"
+                        paddingLeft='20'
+                        // margin="normal"
+                        id="date-picker-inline"
+                        label="earth date"
+                        value={selectedDate}
+                        onChange={date => handleDateChange(date)}
+                        KeyboardButtonProps={{
+                            className: classes.input,
+                            "aria-label": "change date"
+                        }}
+                    />
+                </MuiPickersUtilsProvider>
+            </MuiThemeProvider>
             <div style={{ paddingLeft: 20 }}>
                 <button className={classes.button} onClick={handleSumbit}> Submit </button>
             </div>
+
 
 
             <div style={{
                 paddingTop: 50,
                 paddingLeft: 200,
                 paddingRight: 200,
-                // position: 'absolute', left: '50%', top: '35%',
-                // transform: 'translate(-50%, -50%)',
                 display: "block",
-                // display: 'flex',
-                // justifyContent: 'center',
-                // alignItems: 'center',
-                // height: '100vh',
                 overflow: "auto",
                 minHeight: "1px",
                 width: "100%",
-                // border: "1px solid #ddd",
-                // overflow: "auto",
-                // textAlign: "center",
-                // background: "white"
             }}>
                 <Gallery images={firstLoad ? imagesList.slice(0, LIMIT) : list} showLightboxThumbnails onSelectImage={onSelectImage} />
             </div>
             <div style={{ paddingTop: 20 }}>
                 {showMore && <button onClick={loadMore}> Load More </button>}
             </div>
-        </div>
+        </div >
 
 
     );

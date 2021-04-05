@@ -11,7 +11,6 @@ export default function App() {
 			<NavbarItem />
 			<Switch>
 				<Route exact path='/'>
-					<p1>Home</p1>
 					<Home />
 				</Route>
 				<Route path='/nasagallery'>
