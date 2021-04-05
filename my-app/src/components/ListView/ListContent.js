@@ -29,7 +29,7 @@ const ListContent = ({ photoDataList }) => {
             {photoDataList.map(photoData => (
                 <Card className={classes.root}>
                 <CardActionArea>
-                    <Lightbox images={[{ src: photoData.url, title: 'photoData-image', align:'left'}]} />
+                    <Lightbox images={[{ src: photoData.url, title: photoData.date, description: photoData.explanation}]} />
                     <CardContent style={ {paddingLeft: 200} }>
                         <Typography gutterBottom variant="h5" component="h2">
                             {photoData.date}

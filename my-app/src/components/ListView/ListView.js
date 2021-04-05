@@ -7,8 +7,10 @@ import ListContent from './ListContent';
 import Order from './Order';
 import DateSelect from './DateSelect';
 import CountForm from './CountForm';
+// import formatDate
 
-const api_key = process.env.NASA_KEY;
+// const api_key = process.env.NASA_KEY;
+const api_key = "55gWSlDn1f5YKdU7TSVRTeFlYch1ZTUdtLxNaiOW"
 
 function ListView() {
     const [photoDataList, setPhotoDataList] = useState(null);
@@ -63,21 +65,22 @@ function ListView() {
             start_mm.length !== 2 || start_dd.length !== 2 ||
             end_date_list.length !== 3 || end_yyyy.length !== 4 || 
             end_mm.length !== 2 || end_dd.length !== 2) {
-                setError('Needs in form yyyy-mm-dd')
-                return
+            setError('Needs in form yyyy-mm-dd')
+            return
         }
 
         if (/^-?\d+$/.test(start_yyyy) === false || /^-?\d+$/.test(start_mm) === false 
             || /^-?\d+$/.test(start_dd) === false || /^-?\d+$/.test(end_yyyy) === false 
             || /^-?\d+$/.test(end_mm) === false || /^-?\d+$/.test(end_dd) === false) {
-                setError('Needs in form yyyy-mm-dd with integers')
-                return
+            setError('Needs in form yyyy-mm-dd with integers')
+            return
         }
         
 
         if (end_yyyy < start_yyyy || (end_yyyy === start_yyyy && end_mm < start_mm)
             || (end_yyyy === start_yyyy && end_mm === start_mm && end_dd < start_dd)) {
-            setError('Needs a valid input')
+            setError('Start date should before end dates')
+            return
         }
 
         let today = new Date();
@@ -87,7 +90,8 @@ function ListView() {
 
         if (end_yyyy > yyyy || (end_yyyy === yyyy && end_mm > mm)
             || (end_yyyy === yyyy && end_mm === mm && end_dd > dd)) {
-            setError('Needs a valid input')
+            setError('Needs a valid date input')
+            return
         }
 
         setError('')
