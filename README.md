@@ -43,16 +43,16 @@ Currently, there's few web apps built for astronomy lovers, it is hard for astro
 - Week 4: Add important message page and make the web more attractive
 
 
-### Listview of APOD api
+# Listview of APOD api
 
-## Functionalities
+### Functionalities
 
- - Display images with corresponding information as a list
- - Always display today's image at the top of page
- - Set number of images display
- - Set the start date and end date of the image list
- - Choose different display order
- - Error handling
+- Display images with corresponding information as a list
+- Always display today's image at the top of page
+- Set number of images display
+- Set the start date and end date of the image list
+- Choose different display order
+- Error handling
 
-## Run
- $ npm start
+### Run
+$ npm start
