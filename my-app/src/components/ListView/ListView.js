@@ -9,8 +9,7 @@ import DateSelect from './DateSelect';
 import CountForm from './CountForm';
 import { getDate } from './utils'
 
-// const api_key = process.env.NASA_KEY;
-const api_key = "55gWSlDn1f5YKdU7TSVRTeFlYch1ZTUdtLxNaiOW"
+const api_key = process.env.NASA_KEY;
 
 function ListView() {
     const [photoDataList, setPhotoDataList] = useState(null);
