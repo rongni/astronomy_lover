@@ -7,7 +7,7 @@ import ListContent from './ListContent';
 import Order from './Order';
 import DateSelect from './DateSelect';
 import CountForm from './CountForm';
-// import formatDate
+import { getDate } from './utils'
 
 // const api_key = process.env.NASA_KEY;
 const api_key = "55gWSlDn1f5YKdU7TSVRTeFlYch1ZTUdtLxNaiOW"
@@ -51,16 +51,11 @@ function ListView() {
         setCount('')
     }
 
+
     const handleDateSubmit =  (event) => {
         event.preventDefault()
-        const start_date_list = start_date.split('-')
-        const start_yyyy = start_date_list[0];
-        const start_mm = start_date_list[1];
-        const start_dd = start_date_list[2];
-        const end_date_list = end_date.split('-')
-        const end_yyyy = end_date_list[0];
-        const end_mm = end_date_list[1];
-        const end_dd = end_date_list[2];
+        const [start_date_list, start_yyyy, start_mm, start_dd] = getDate(start_date);
+        const [end_date_list, end_yyyy, end_mm, end_dd] = getDate(end_date);
         if (start_date_list.length !==3 || start_yyyy.length !== 4 || 
             start_mm.length !== 2 || start_dd.length !== 2 ||
             end_date_list.length !== 3 || end_yyyy.length !== 4 || 
