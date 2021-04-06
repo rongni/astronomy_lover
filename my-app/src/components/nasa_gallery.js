@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Gallery from 'react-grid-gallery';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors'
@@ -111,8 +111,9 @@ export default function NASAGallery() {
     const [selectedDate, setSelectedDate] = useState(new Date('2016-06-03'));
     const [dateVal, setDateVal] = useState('');
 
-    const handleDateChange = (date) => {
+    const handleDateChange = (date, value) => {
         setSelectedDate(date);
+        setDateVal(value)
     };
 
     const captionStyle = {
@@ -173,31 +174,39 @@ export default function NASAGallery() {
     const handleSumbit = (evt) => {
         evt.preventDefault();
         setImageList([])
-        setDateVal('')
-        setDateVal(moment(selectedDate).format('YYYY-MM-DD'))
-        console.log(dateVal)
         fetchPhoto();
 
         async function fetchPhoto() {
-            if (dateVal) {
-                const res = await fetch(
-                    // we'll update the KEYHERE soon!
-                    `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${apiKey}&earth_date=${dateVal} `
-                );
-                const data = await res.json();
-                setLength(Object.keys(data[['photos']]).length);
-                setData(data[['photos']])
 
-            } else {
-                const res = await fetch(
-                    // we'll update the KEYHERE soon!
-                    `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
-                );
-                const data = await res.json();
-                setLength(Object.keys(data[['photos']]).length);
-                setData(data[['photos']])
+            const res = await fetch(
+                // we'll update the KEYHERE soon!
+                `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
+            );
+            const data = await res.json();
+            setLength(Object.keys(data[['photos']]).length);
+            setData(data[['photos']])
 
-            }
+
+
+        }
+    };
+    const handleSumbitDate = (evt) => {
+        evt.preventDefault();
+        setImageList([])
+        // setDateVal('')
+        // setDateVal(moment(selectedDate).format('YYYY-MM-DD'))
+        fetchPhoto();
+
+        async function fetchPhoto() {
+
+            const res = await fetch(
+                // we'll update the KEYHERE soon!
+                `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${apiKey}&earth_date=${dateVal} `
+            );
+            const data = await res.json();
+            setLength(Object.keys(data[['photos']]).length);
+            setData(data[['photos']])
+
 
         }
     };
@@ -324,7 +333,7 @@ export default function NASAGallery() {
                         id="date-picker-inline"
                         label="earth date"
                         value={selectedDate}
-                        onChange={date => handleDateChange(date)}
+                        onChange={(date, value) => { handleDateChange(date, value); }}
                         KeyboardButtonProps={{
                             className: classes.input,
                             "aria-label": "change date"
@@ -334,6 +343,9 @@ export default function NASAGallery() {
             </MuiThemeProvider>
             <div style={{ paddingLeft: 20 }}>
                 <button className={classes.button} onClick={handleSumbit}> Submit </button>
+            </div>
+            <div style={{ paddingLeft: 20 }}>
+                <button className={classes.button} onClick={handleSumbitDate}> Submit2 </button>
             </div>
 
 
