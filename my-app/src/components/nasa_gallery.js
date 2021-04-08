@@ -13,7 +13,7 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { createMuiTheme } from '@material-ui/core'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import moment from 'moment';
+
 const LIMIT = 20;
 const customTheme = createMuiTheme({
     palette: {
