@@ -14,7 +14,7 @@ const DateSelect = ({ start_date, end_date, handleDateSubmit, handleStartChange,
                 value={end_date}
                 onChange={handleEndChange}>
             </input>
-            <input type='submit'></input>
+            <input type='submit'/>
         </form>
     )
 }
