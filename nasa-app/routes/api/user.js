@@ -83,7 +83,7 @@ router.post(
 );
 
 
-// @route    GET api/profile/user
+// @route    GET api/user
 // @desc     Get profile by user ID
 // @access   Public
 router.get('/me', auth,
@@ -134,13 +134,10 @@ router.put('/me/password', [auth,
   
       try {
         const user = await User.findOne({ _id: req.user.id });
-
         const salt = await bcrypt.genSalt(10);
-        
         const { password } = req.body;
         user.password = await bcrypt.hash(password, salt);
         await user.save();
-  
         res.json(user);
       } catch (err) {
         console.error(err.message);
@@ -149,11 +146,11 @@ router.put('/me/password', [auth,
     }
 );
 
-// @route    PUT api/profile/password
+// @route    PUT api/user/avatar
 // @desc     Update user password
 // @access   Private
-router.put('/me/avatar', auth,
-    check('avatar', 'Avatar is required').notEmpty(),
+router.put('/me/avatar', [auth,
+    check('avatar', 'Avatar is required').notEmpty()],
     async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
