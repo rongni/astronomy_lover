@@ -15,12 +15,9 @@ const User = require('../../models/User');
 // @access   Public
 router.post(
   '/',
-  check('name', 'Name is required').notEmpty(),
-  check('email', 'Please include a valid email').isEmail(),
-  check(
-    'password',
-    'Please enter a password with 6 or more characters'
-  ).isLength({ min: 6 }),
+  check('name', 'Required name').notEmpty(),
+  check('email', 'Invalid email').isEmail(),
+  check('password', 'Password should longer than 6').isLength({ min: 6 }),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -35,7 +32,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'User already exists' }] });
+          .json({ errors: 'User already existed' });
       }
 
       const avatar = normalize(
@@ -77,14 +74,14 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server error: ' + String(err.message));
+      res.status(500).send('Server error');
     }
   }
 );
 
 
 // @route    GET api/user
-// @desc     Get profile by user ID
+// @desc     Get user profile by user ID
 // @access   Public
 router.get('/me', auth,
     async (req, res) => {
@@ -93,12 +90,12 @@ router.get('/me', auth,
           _id: req.user.id
         }).populate('user', ['name', 'avatar', 'password']);
   
-        if (!profile) return res.status(400).json({ msg: 'Profile not found' });
+        if (!profile) return res.status(400).json({ errors: 'User not found' });
   
         return res.json(profile);
       } catch (err) {
         console.error(err.message);
-        return res.status(500).json({ msg: 'Server error' });
+        res.status(500).send('Server Error');
       }
     }
 );

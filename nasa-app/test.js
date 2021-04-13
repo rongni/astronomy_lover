@@ -4,23 +4,24 @@ const mongoose = require("mongoose");
 const config = require('config');
 const db = config.get('mongoURI');
 
-beforeAll( async () => {
+beforeAll( async (done) => {
     await mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true });
-    // done();
+    done();
 });
 
 // auth token of current user
 let auth_token = "";
+const test_data = { name:"test", email:"test@gmail.com", password:"123456" };
 
 // create new user
 test("POST /api/user", async () => {  
     await supertest(app)
         .post("/api/user")
         .type('json')
-        .send({ name:"test", email:"test@gmail.com", password:"123456" })
+        .send(test_data)
         .expect(200)
-        .then((res) => {
-            auth_token = res.body['token'];
+        .then(async (res) => {
+            auth_token = await res.body['token'];
         })
 });
 
@@ -30,6 +31,9 @@ test("GET /api/auth", async () => {
         .get("/api/auth")
         .set('auth-token', auth_token)
         .expect(200)
+        .then(async (res) => {
+            expect(res.body.email).toBe(test_data.email)
+        })
 });
 
 // user auth, not exist
@@ -157,7 +161,7 @@ test("PUT /api/user", async () => {
         .expect(400)
 });
 
-// update password
+// update avatar
 test("PUT /api/user/avatar", async () => {  
     await supertest(app)
         .put("/api/user/me/avatar")
@@ -167,7 +171,7 @@ test("PUT /api/user/avatar", async () => {
         .expect(200)
 });
 
-// update password
+// update avatar
 test("PUT /api/user/avatar", async () => {  
     await supertest(app)
         .put("/api/user/me/avatar")
@@ -193,7 +197,7 @@ test("DELETE /api/user/me", async () => {
         .expect(401)
 });
 
-afterAll(async () => {
+afterAll(async (done) => {
     await mongoose.connection.close();
-    // done();
+    done();
 });
