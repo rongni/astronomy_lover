@@ -5,7 +5,8 @@ import Home from "./components/home";
 import NASAGallery from "./components/nasa_gallery"
 import ListView from './components/ListView/ListView'
 import "./App.css";
-
+import UserProfile, { useremail } from './components/profile'
+import UserLibrary from './components/library'
 export default function App() {
 	return (
 		<div className='App'>
@@ -21,6 +22,12 @@ export default function App() {
 				</Route>
 				<Route path='/listview'>
 					<ListView />
+				</Route>
+				<Route path='/profile'>
+					<UserProfile />
+				</Route>
+				<Route path='/library'>
+					<UserLibrary />
 				</Route>
 			</Switch>
 		</div>

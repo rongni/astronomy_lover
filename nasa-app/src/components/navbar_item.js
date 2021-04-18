@@ -18,6 +18,12 @@ const NavbarItem = () => {
 					<Nav.Link as={Link} to='/listview'>
 						ListView
 					</Nav.Link>
+					<Nav.Link as={Link} to='/profile'>
+						MyProfile
+					</Nav.Link>
+					<Nav.Link as={Link} to='/library'>
+						MyLibrary
+					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
