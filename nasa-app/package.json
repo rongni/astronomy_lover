@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
-    "@material-ui/core": "^4.11.3",
+    "@emotion/react": "^11.0.0",
+  "@emotion/styled": "^11.0.0",
+  "@material-ui/core": "^5.0.0",
+
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.3.10",
     "@mui-treasury/styles": "^1.13.1",
@@ -44,7 +47,7 @@
     "build": "react-scripts build",
     "test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
     "eject": "react-scripts eject",
-    "dev":"concurrently \"yarn nodemon server\" \"yarn start\"",
+    "dev": "concurrently \"yarn nodemon server\" \"yarn start\"",
     "start-server": "nodemon server"
   },
   "eslintConfig": {

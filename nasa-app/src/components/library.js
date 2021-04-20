@@ -48,23 +48,10 @@ export default function UserLibrary() {
             singObj['thumbnailWidth'] = 320
             singObj['thumbnailHeight'] = 320
             singObj['id'] = entry.id
-            // var caption = 'rover: ' + entry.rover.name + ', landing_date: ' + entry.rover.landing_date + ', launch_date: ' + entry.rover.launch_date
-            // singObj['tags'] = [{ value: entry.camera.name, title: 'camera name' }]
-            // singObj['caption'] = caption
             tempList.push(singObj)
         });
-        // var imagesTest = tempList.map((i) => {
-        //     i.customOverlay = (
-        //         <div style={captionStyle}>
-        //             <div>{i.caption}</div>
-        //             {i.hasOwnProperty('tags') &&
-        //                 setCustomTags(i)}
-        //         </div>);
-        //     return i;
-        // });
+
         setImageList(tempList)
-        // setImageList(tempList)
-        console.log(imagesList)
     }
     function openDetails(id) {
         var image = imagesList[id]
@@ -84,7 +71,6 @@ export default function UserLibrary() {
     }
     const handleDeleteImage = (event) => {
         event.preventDefault();
-        // var images = imagesTest.slice();
         let seletimageList = []
         imagesList.forEach(function (entry) {
             if (entry.hasOwnProperty("isSelected")) {
@@ -126,12 +112,10 @@ export default function UserLibrary() {
 
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `/api/library/${email} `
             );
             const data = await res.json();
-            // setLength(Object.keys(data[['photos']]).length);
-            // setPhotoData(data[['photos']]);
             setData(data[['image']])
         }
 

@@ -170,7 +170,7 @@ router.put('/me/avatar', [auth,
   }
 );
 
-// @route    PUT api/user/avatar
+// @route    PUT api/user/username
 // @desc     Update user password
 // @access   Private
 router.put('/me/username', [auth,

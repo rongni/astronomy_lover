@@ -7,6 +7,7 @@ import ListView from './components/ListView/ListView'
 import "./App.css";
 import UserProfile, { useremail } from './components/profile'
 import UserLibrary from './components/library'
+import TestView from "./components/test";
 export default function App() {
 	return (
 		<div className='App'>
@@ -28,6 +29,9 @@ export default function App() {
 				</Route>
 				<Route path='/library'>
 					<UserLibrary />
+				</Route>
+				<Route path='/test'>
+					<TestView />
 				</Route>
 			</Switch>
 		</div>
