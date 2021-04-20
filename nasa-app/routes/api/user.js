@@ -32,7 +32,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ errors: 'User already existed' });
+          .json({ errors: [{ msg: 'User already exists' }] });
       }
 
       const avatar = normalize(
@@ -90,7 +90,7 @@ router.get('/me', auth,
           _id: req.user.id
         }).populate('user', ['name', 'avatar', 'password']);
   
-        if (!profile) return res.status(400).json({ errors: 'User not found' });
+        if (!profile) return res.status(400).json({ errors: [{ msg: 'User does not exist' }] });
   
         return res.json(profile);
       } catch (err) {
