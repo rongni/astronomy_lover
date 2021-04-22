@@ -32,7 +32,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ errors: 'User already existed' });
+          .json({ errors: [{ msg: 'User already exists' }] });
       }
 
       const avatar = normalize(
@@ -84,6 +84,7 @@ router.post(
 // @desc     Get user profile by user ID
 // @access   Public
 router.get('/me', auth,
+<<<<<<< HEAD
   async (req, res) => {
     try {
       const profile = await User.findOne({
@@ -96,6 +97,21 @@ router.get('/me', auth,
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
+=======
+    async (req, res) => {
+      try {
+        const profile = await User.findOne({
+          _id: req.user.id
+        }).populate('user', ['name', 'avatar', 'password']);
+  
+        if (!profile) return res.status(400).json({ errors: [{ msg: 'User does not exist' }] });
+  
+        return res.json(profile);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      }
+>>>>>>> c2f6f725553d24f434041d2fef11c8b9c7da45e0
     }
   }
 );
