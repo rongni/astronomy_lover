@@ -13,8 +13,11 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { createMuiTheme } from '@material-ui/core'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { JsonWebTokenError } from 'jsonwebtoken';
 
 const LIMIT = 20;
+const myHeaders = new Headers();
+myHeaders.append('Content-Type', 'application/json');
 const customTheme = createMuiTheme({
     palette: {
         primary: {
@@ -138,6 +141,7 @@ export default function NASAGallery() {
             var caption = 'rover: ' + entry.rover.name + ', landing_date: ' + entry.rover.landing_date + ', launch_date: ' + entry.rover.launch_date
             singObj['tags'] = [{ value: entry.camera.name, title: 'camera name' }]
             singObj['caption'] = caption
+            singObj['id'] = entry.id
             tempList.push(singObj)
         });
         var imagesTest = tempList.map((i) => {
@@ -249,6 +253,44 @@ export default function NASAGallery() {
     const handleChange = (event) => {
         event.preventDefault();
         setVal(event.target.value);
+    };
+    const handleAddImage = (event) => {
+        event.preventDefault();
+        // var images = imagesTest.slice();
+        let seletimageList = []
+        imagesList.forEach(function (entry) {
+            if (entry.hasOwnProperty("isSelected")) {
+                var singObj = {}
+                singObj['id'] = entry.id
+                singObj['img_src'] = entry.src
+                seletimageList.push(singObj)
+            }
+        });
+        console.log(seletimageList)
+        const data_two =
+        {
+            'image': seletimageList
+        }
+        fetchPhoto();
+
+
+        async function fetchPhoto() {
+            const res = await fetch(
+                // we'll update the KEYHERE soon!
+                '/api/library/rong.ni110828@gmail.com', {
+                method: 'PUT',
+                // mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                // header: myHeaders,
+                body: JSON.stringify(data_two),
+            }
+
+            );
+            const data = await res.json();
+            console.log(data)
+        }
+        window.location.reload();
+
     };
     const handleChangeRover = (event) => {
         event.preventDefault();
@@ -363,6 +405,9 @@ export default function NASAGallery() {
             </div>
             <div style={{ paddingTop: 20 }}>
                 {showMore && <button onClick={loadMore}> Load More </button>}
+            </div>
+            <div style={{ paddingTop: 20 }}>
+                <button className={classes.button} onClick={handleAddImage}> Add </button>
             </div>
         </div >
 

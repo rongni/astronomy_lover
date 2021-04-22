@@ -94,7 +94,8 @@ router.put('/:email', getUser, body().notEmpty(), async (req, res) => {
     }
 
     try {
-        req.body.forEach(function (item) {
+
+        req.body.image.forEach(function (item) {
             res.user.image.unshift(item)
         })
         const updatedUser = await res.user.save()
@@ -117,6 +118,29 @@ router.delete('/:email/images/:image_id', getUser, async (req, res) => {
         res.user.image = res.user.image.filter(
             (img) => img.id.toString() !== req.params.image_id
         );
+
+        await res.user.save();
+
+        return res.status(200).json(res.user);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ msg: 'Server error' });
+    }
+});
+
+// @route    DELETE api/library/:email/images/:image_id
+// @desc     Delete one image from library base on image_id
+// @access   Public
+
+router.delete('/:email/images', getUser, async (req, res) => {
+    try {
+        req.body.image.forEach(function (item) {
+            res.user.image = res.user.image.filter(
+                (img) => img.id.toString() !== item.image_id.toString()
+            );
+
+        })
+
 
         await res.user.save();
 
