@@ -37,7 +37,11 @@ function UserLibrary({ auth: { user }, loadUser }) {
 
 
     const [imagesList, setImageList] = useState([])
-    const [email, setEmail] = useState(user.email)
+    let email = localStorage.getItem('email')
+    if (user) {
+        email = user.email
+        localStorage.setItem('email', user.email);
+    }
 
     const classes = useStyles();
 
@@ -88,10 +92,13 @@ function UserLibrary({ auth: { user }, loadUser }) {
         {
             'image': seletimageList
         }
-        console.log(imageDeleteList)
+        // console.log(imageDeleteList)
+        // console.log(user.email)
+        // let email = localStorage.getItem('email')
+        // if (user) {
+        //     email = user.email
+        // }
         fetchPhoto();
-
-
         async function fetchPhoto() {
             const res = await fetch(
 
@@ -107,13 +114,14 @@ function UserLibrary({ auth: { user }, loadUser }) {
             const data = await res.json();
             console.log(data)
         }
+        // localStorage.setItem('email', user.email);
         window.location.reload();
+
 
 
     };
 
     useEffect(() => {
-
         fetchPhoto();
 
         async function fetchPhoto() {

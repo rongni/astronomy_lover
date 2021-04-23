@@ -8,14 +8,14 @@ import ListView from './components/ListView/ListView'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import "./App.css";
-import UserProfile, { useremail } from './components/profile'
+import UserProfile from './components/profile'
 import UserLibrary from './components/library'
-
+// import Routes from './components/routing/Routes';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import { LOGOUT } from './actions/types';
-
+// import { Fragment } from 'react';
 export default function App() {
 	useEffect(() => {
 		// check for token in LS
@@ -29,6 +29,19 @@ export default function App() {
 			if (!localStorage.token) store.dispatch({ type: LOGOUT });
 		});
 	}, []);
+	// return (
+	// 	<Provider store={store}>
+	// 		<Router>
+	// 			<Fragment>
+	// 				<Navbar />
+	// 				<Switch>
+	// 					<Route exact path="/" component={Home} />
+	// 					<Route component={Routes} />
+	// 				</Switch>
+	// 			</Fragment>
+	// 		</Router>
+	// 	</Provider>
+	// );
 
 	return (
 		<Provider store={store}>

@@ -1,3 +1,4 @@
+import { eachMinuteOfIntervalWithOptions } from 'date-fns/fp';
 import {
   REGISTER_SUCCESS,
   USER_LOADED,
@@ -10,7 +11,8 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: null
+  user: null,
+  email: null
 };
 
 function authReducer(state = initialState, action) {
@@ -22,7 +24,8 @@ function authReducer(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: payload
+        user: payload,
+        email: payload.email
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
@@ -39,7 +42,8 @@ function authReducer(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
-        user: null
+        user: null,
+        email: null
       };
     default:
       return state;

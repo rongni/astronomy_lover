@@ -5,8 +5,53 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from '../actions/auth'
-
+import React, { Fragment } from 'react';
 const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
+	const authLinks = (
+		<Nav className='mr-auto'>
+			<Nav.Link as={Link} to="/library">
+				MyLibrary
+			</Nav.Link>
+			<Nav.Link as={Link} to='/profile'>
+				MyProfile
+					</Nav.Link>
+			<Nav.Link onClick={logout} as={Link} to='/'>
+				Logout
+					</Nav.Link>
+
+		</Nav >
+	);
+	const guestLinks = (
+		<Nav className='mr-auto'>
+			<Nav.Link as={Link} to='/register'>
+				Register
+					</Nav.Link>
+			<Nav.Link as={Link} to='/login'>
+				Login
+					</Nav.Link>
+
+
+		</Nav >
+	);
+	// return (
+	// 	<nav className="navbar bg-dark">
+	// 		<Route exact path='/'>
+	// 					<Home />
+	// 				</Route>
+	// 		<h1>
+	// 			<Link to="/nasagallery">
+	// 				<i className="fas fa-code" /> Gallery
+	// 		</Link>
+	// 		</h1>
+	// 		<h1>
+	// 			<Link to="/listview">
+	// 				<i className="fas fa-code" /> ListView
+	// 		</Link>
+	// 		</h1>
+	// 		<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+	// 	</nav>
+	// );
+
 	return (
 		<Navbar bg='dark' variant='dark' expand='lg'>
 			<Navbar.Brand as={Link} to='/'>
@@ -15,27 +60,13 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='mr-auto'>
-					<Nav.Link as={Link} to='/register'>
-						Register
-					</Nav.Link>
-					<Nav.Link as={Link} to='/login'>
-						Login
-					</Nav.Link>
 					<Nav.Link as={Link} to='/nasagallery'>
 						Gallery
 					</Nav.Link>
 					<Nav.Link as={Link} to='/listview'>
 						ListView
 					</Nav.Link>
-					<Nav.Link as={Link} to='/profile'>
-						MyProfile
-					</Nav.Link>
-					<Nav.Link as={Link} to='/library'>
-						MyLibrary
-					</Nav.Link>
-					<Nav.Link onClick={logout} as={Link} to='/'>
-						Logout
-					</Nav.Link>
+					<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>

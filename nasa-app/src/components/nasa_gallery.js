@@ -163,6 +163,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
     }
 
     useEffect(() => {
+        // console.log(user.email)
 
         fetchPhoto();
 

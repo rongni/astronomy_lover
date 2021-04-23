@@ -49,7 +49,7 @@
     "test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
     "eject": "react-scripts eject",
     "dev": "concurrently \"yarn nodemon server\" \"yarn start\"",
-    "start-server": "nodemon server"
+    "start-server": "nodemon server --ignore frontend"
   },
   "eslintConfig": {
     "extends": [
