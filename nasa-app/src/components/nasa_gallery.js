@@ -14,6 +14,9 @@ import DateFnsUtils from "@date-io/date-fns";
 import { createMuiTheme } from '@material-ui/core'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { JsonWebTokenError } from 'jsonwebtoken';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loadUser } from '../actions/auth';
 
 const LIMIT = 20;
 const myHeaders = new Headers();
@@ -100,7 +103,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-export default function NASAGallery() {
+function NASAGallery({ auth: { user }, loadUser }) {
+
     const apiKey = process.env.REACT_APP_NASA_KEY;
     const [imagesList, setImageList] = useState([])
     const classes = useStyles();
@@ -159,6 +163,7 @@ export default function NASAGallery() {
     }
 
     useEffect(() => {
+
         fetchPhoto();
 
         async function fetchPhoto() {
@@ -271,13 +276,14 @@ export default function NASAGallery() {
         {
             'image': seletimageList
         }
+        const email = user.email;
         fetchPhoto();
 
 
         async function fetchPhoto() {
             const res = await fetch(
                 // we'll update the KEYHERE soon!
-                '/api/library/rong.ni110828@gmail.com', {
+                `/api/library/${email}`, {
                 method: 'PUT',
                 // mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
@@ -415,3 +421,13 @@ export default function NASAGallery() {
     );
 
 }
+
+NASAGallery.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+
+export default connect(mapStateToProps, { loadUser })(NASAGallery);

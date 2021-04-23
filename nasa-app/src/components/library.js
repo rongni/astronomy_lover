@@ -2,6 +2,9 @@ import Gallery from 'react-grid-gallery';
 import { useState, useEffect, useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loadUser } from '../actions/auth';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -30,11 +33,12 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-export default function UserLibrary() {
+function UserLibrary({ auth: { user }, loadUser }) {
 
 
     const [imagesList, setImageList] = useState([])
-    const email = "rong.ni110828@gmail.com"
+    const [email, setEmail] = useState(user.email)
+
     const classes = useStyles();
 
 
@@ -70,6 +74,7 @@ export default function UserLibrary() {
         });
     }
     const handleDeleteImage = (event) => {
+
         event.preventDefault();
         let seletimageList = []
         imagesList.forEach(function (entry) {
@@ -90,7 +95,7 @@ export default function UserLibrary() {
         async function fetchPhoto() {
             const res = await fetch(
 
-                '/api/library/rong.ni110828@gmail.com/images', {
+                `/api/library/${email}/images`, {
                 method: 'Delete',
 
                 headers: { 'Content-Type': 'application/json' },
@@ -108,6 +113,7 @@ export default function UserLibrary() {
     };
 
     useEffect(() => {
+
         fetchPhoto();
 
         async function fetchPhoto() {
@@ -116,7 +122,32 @@ export default function UserLibrary() {
                 `/api/library/${email} `
             );
             const data = await res.json();
-            setData(data[['image']])
+            if (data[['image']]) {
+                setData(data[['image']])
+            } else {
+                const postData = {
+                    'email': email,
+                    'image': []
+                }
+                postLibrary();
+
+
+                async function postLibrary() {
+                    const res = await fetch(
+
+                        '/api/library', {
+                        method: 'POST',
+
+                        headers: { 'Content-Type': 'application/json' },
+
+                        body: JSON.stringify(postData),
+                    }
+
+                    );
+                }
+
+            }
+
         }
 
     }, []);
@@ -140,3 +171,13 @@ export default function UserLibrary() {
     )
 
 }
+UserLibrary.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+
+export default connect(mapStateToProps, { loadUser })(UserLibrary);

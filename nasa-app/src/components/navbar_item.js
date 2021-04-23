@@ -27,19 +27,14 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 					<Nav.Link as={Link} to='/listview'>
 						ListView
 					</Nav.Link>
-<<<<<<< HEAD
 					<Nav.Link as={Link} to='/profile'>
 						MyProfile
 					</Nav.Link>
 					<Nav.Link as={Link} to='/library'>
 						MyLibrary
 					</Nav.Link>
-					<Nav.Link as={Link} to='/test'>
-						Test
-=======
-					 <Nav.Link onClick={logout} as={Link} to='/'>
-					 	Logout
->>>>>>> c2f6f725553d24f434041d2fef11c8b9c7da45e0
+					<Nav.Link onClick={logout} as={Link} to='/'>
+						Logout
 					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>

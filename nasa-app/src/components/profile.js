@@ -15,13 +15,14 @@ import {
 import { useState, useEffect, } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors'
-const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA3YTQ5NjY5MWE0OTBhMjE1Yzc0NzU3In0sImlhdCI6MTYxODYyNjkxOCw"
-    + "iZXhwIjoxNjE5MDU4OTE4fQ.uf2gfb7hcqlvWfl6iw5f_JLUu8SmBvfUeiQzglAshsE"
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loadUser } from '../actions/auth';
+// const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA3YTQ5NjY5MWE0OTBhMjE1Yzc0NzU3In0sImlhdCI6MTYxODYyNjkxOCw"
+//     + "iZXhwIjoxNjE5MDU4OTE4fQ.uf2gfb7hcqlvWfl6iw5f_JLUu8SmBvfUeiQzglAshsE"
 
 
-const myHeaders = new Headers();
-myHeaders.append('Content-Type', 'application/json');
-myHeaders.append('auth-token', auth_token);
+
 export let useremail = '';
 const useStyles = makeStyles((theme) => ({
 
@@ -52,7 +53,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function UserProfile(props) {
+function UserProfile({ auth: { token }, loadUser }, props) {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('auth-token', token);
 
 
     const [user, setUser] = useState('')
@@ -266,4 +270,14 @@ export default function UserProfile(props) {
 
 
 }
+UserProfile.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+
+export default connect(mapStateToProps, { loadUser })(UserProfile);
 
