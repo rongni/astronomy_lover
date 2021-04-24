@@ -98,14 +98,13 @@ https://docs.google.com/spreadsheets/d/1f05OsGqw4MYJsMgao5kRHMQdOcmL0Uq5YCpiAPIg
 |-----------|:---------:|-------------------------------------------------------------------------------|
 |  Notes render |  9  |  0: Didn't implement anything <br> +3: successfully render notes as clicking the image <br> +2: successfully add notes <br> +2: successfully delete notes <br> +2: successfully update notes |
 |  More Attractive Webpage |  6  |  0: Didn't implement anything <br> for every 1 feature updates, gain 2 point |
-|  Unit Test for API |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
-|  Manual test plan for webpage |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
+|  Manual test plan for webpage |  10  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
 ### Rongxin Ni 
 https://docs.google.com/spreadsheets/d/1icHquxlWH3wfYjcVl-ndNTqt9XMEkl3PsdR3itomvJg/edit#gid=1203283929
 | Category  | Total Score Allocated | Detailed Rubrics                                                            |
 |-----------|:---------:|-------------------------------------------------------------------------------|
-|  Message API |  8  |  0: Didn't implement anything <br> +2: implemented GET API <br> +4: implemented POST API <br> +2: implemented DELETE API |
-|  Message Page |  7  |  0: Didn't implement anything <br> +3: correctly render messages recieved <br> +2: correctly delete messages <br> +2: implemented notification alert |
-|  Unit Test for API |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
-|  Manual test plan for webpage |  5  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
+| Navgation includes Login and Logout |  4  | 0: Didn't connect login to other page  <br> +2: show myprofile and mylibrary if user login in  <br> +2:  hide myprofile and mylibrary if user not login 
+| About us page |  5  | 0: Didn't implement anything <br>  +2: display website  introduction <br>  +2: show contact infomation and github link <br>  +1: add link to NASA official webiste  
+|  More Attractive Webpage |  6  |  0: Didn't implement anything <br> for every 1 feature updates, gain 2 point |
+|  Manual test plan for webpage |  10  |  0: Didn't implement tests  <br> for every 1 unit tests, gain 1 point |
 
