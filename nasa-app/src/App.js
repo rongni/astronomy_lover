@@ -10,12 +10,11 @@ import Register from './auth/Register'
 import "./App.css";
 import UserProfile from './components/profile'
 import UserLibrary from './components/library'
-// import Routes from './components/routing/Routes';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import { LOGOUT } from './actions/types';
-// import { Fragment } from 'react';
+import AboutUS from './components/about_us'
 export default function App() {
 	useEffect(() => {
 		// check for token in LS
@@ -29,19 +28,6 @@ export default function App() {
 			if (!localStorage.token) store.dispatch({ type: LOGOUT });
 		});
 	}, []);
-	// return (
-	// 	<Provider store={store}>
-	// 		<Router>
-	// 			<Fragment>
-	// 				<Navbar />
-	// 				<Switch>
-	// 					<Route exact path="/" component={Home} />
-	// 					<Route component={Routes} />
-	// 				</Switch>
-	// 			</Fragment>
-	// 		</Router>
-	// 	</Provider>
-	// );
 
 	return (
 		<Provider store={store}>
@@ -70,6 +56,9 @@ export default function App() {
 					</Route>
 					<Route path='/library'>
 						<UserLibrary />
+					</Route>
+					<Route path='/aboutUs'>
+						<AboutUS />
 					</Route>
 				</Switch>
 			</Router>

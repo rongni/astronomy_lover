@@ -31,26 +31,9 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 					</Nav.Link>
 
 
+
 		</Nav >
 	);
-	// return (
-	// 	<nav className="navbar bg-dark">
-	// 		<Route exact path='/'>
-	// 					<Home />
-	// 				</Route>
-	// 		<h1>
-	// 			<Link to="/nasagallery">
-	// 				<i className="fas fa-code" /> Gallery
-	// 		</Link>
-	// 		</h1>
-	// 		<h1>
-	// 			<Link to="/listview">
-	// 				<i className="fas fa-code" /> ListView
-	// 		</Link>
-	// 		</h1>
-	// 		<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-	// 	</nav>
-	// );
 
 	return (
 		<Navbar bg='dark' variant='dark' expand='lg'>
@@ -67,6 +50,9 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 						ListView
 					</Nav.Link>
 					<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+					<Nav.Link as={Link} to='/aboutUS'>
+						AboutUs
+					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
