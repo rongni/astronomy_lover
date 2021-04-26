@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Gallery from 'react-grid-gallery';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors'
@@ -13,7 +13,7 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { createMuiTheme, Grid } from '@material-ui/core'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { JsonWebTokenError } from 'jsonwebtoken';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Font, { Text } from 'react-font'
@@ -168,23 +168,23 @@ function NASAGallery({ auth: { user }, loadUser }) {
             return i;
         });
         setImageList(imagesTest)
-        // setImageList(tempList)
+
         console.log(imagesList)
     }
 
     useEffect(() => {
-        // console.log(user.email)
+
 
         fetchPhoto();
 
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=${apiKey}&earth_date=2016-06-03 `
             );
             const data = await res.json();
             setLength(Object.keys(data[['photos']]).length);
-            // setPhotoData(data[['photos']]);
+
             setData(data[['photos']])
         }
 
@@ -199,7 +199,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
         async function fetchPhoto() {
 
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
             );
             const data = await res.json();
@@ -213,14 +213,13 @@ function NASAGallery({ auth: { user }, loadUser }) {
     const handleSumbitDate = (evt) => {
         evt.preventDefault();
         setImageList([])
-        // setDateVal('')
-        // setDateVal(moment(selectedDate).format('YYYY-MM-DD'))
+
         fetchPhoto();
 
         async function fetchPhoto() {
 
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${apiKey}&earth_date=${dateVal} `
             );
             const data = await res.json();
@@ -293,12 +292,12 @@ function NASAGallery({ auth: { user }, loadUser }) {
 
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `/api/library/${email}`, {
                 method: 'PUT',
-                // mode: 'no-cors',
+
                 headers: { 'Content-Type': 'application/json' },
-                // header: myHeaders,
+
                 body: JSON.stringify(data_two),
             }
 
@@ -437,7 +436,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
                                 variant="inline"
                                 format="yyyy-MM-dd"
 
-                                // margin="normal"
+
                                 id="date-picker-inline"
                                 value={selectedDate}
                                 onChange={(date, value) => { handleDateChange(date, value); }}

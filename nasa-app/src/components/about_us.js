@@ -8,19 +8,16 @@ import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { mdiFacebook, mdiGitlab, mdiLinkedin, mdiGithub, mdiLinkVariant } from '@mdi/js';
+import { mdiGitlab, mdiLinkedin, mdiGithub, mdiLinkVariant } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
 import clsx from 'clsx';
-import Font, { Text } from 'react-font'
+import Font from 'react-font'
 
 import {
     CardHeader,
 } from '@material-ui/core/';
-// import Popup from 'reactjs-popup';
-// import { deepPurple } from '@material-ui/core/colors'
-// import peiyi from './public/peiyi.png'
-// import { deepPurple500 } from 'react-native-paper/lib/typescript/styles/colors';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -121,9 +118,6 @@ const useStyles = makeStyles(theme => ({
 
     paragraphcolor: {
         color: "#cbccb8",
-        fontFamily: 'Zen Dots',
-        font: "Times New Roman"
-        // font-family: "Times New Roman", Times, serif;
     },
 
 

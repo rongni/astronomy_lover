@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Font, { Text } from 'react-font'
+import Font from 'react-font'
 
 
 const useStyles = makeStyles(theme => ({

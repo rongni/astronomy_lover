@@ -1,5 +1,5 @@
 import Gallery from 'react-grid-gallery';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors'
 import { connect } from 'react-redux';
@@ -92,12 +92,6 @@ function UserLibrary({ auth: { user }, loadUser }) {
         {
             'image': seletimageList
         }
-        // console.log(imageDeleteList)
-        // console.log(user.email)
-        // let email = localStorage.getItem('email')
-        // if (user) {
-        //     email = user.email
-        // }
         fetchPhoto();
         async function fetchPhoto() {
             const res = await fetch(
@@ -114,7 +108,6 @@ function UserLibrary({ auth: { user }, loadUser }) {
             const data = await res.json();
             console.log(data)
         }
-        // localStorage.setItem('email', user.email);
         window.location.reload();
 
 
