@@ -104,8 +104,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function NASAGallery({ auth: { user }, loadUser }) {
 
-    // const apiKey = process.env.REACT_APP_NASA_KEY;
-    const apiKey = "55gWSlDn1f5YKdU7TSVRTeFlYch1ZTUdtLxNaiOW"
+    const apiKey = process.env.REACT_APP_NASA_KEY;
     const [imagesList, setImageList] = useState([])
     const classes = useStyles();
     const [firstLoad, setFirstlLoad] = useState(true);

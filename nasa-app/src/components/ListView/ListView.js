@@ -15,10 +15,8 @@ import { useStyles } from '../utils'
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-// const api_key = process.env.REACT_APP_NASA_KEY;
-const api_key = "55gWSlDn1f5YKdU7TSVRTeFlYch1ZTUdtLxNaiOW"
+const api_key = process.env.REACT_APP_NASA_KEY;
 const NUM_TEST = /^-?\d+$/
 
 const customTheme = createMuiTheme({
