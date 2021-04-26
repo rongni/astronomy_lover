@@ -14,43 +14,22 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 			</Nav.Link>
 			<Nav.Link as={Link} to='/profile'>
 				MyProfile
-					</Nav.Link>
+			</Nav.Link>
 			<Nav.Link onClick={logout} as={Link} to='/'>
 				Logout
-					</Nav.Link>
-
+			</Nav.Link>
 		</Nav >
 	);
 	const guestLinks = (
 		<Nav className='mr-auto'>
 			<Nav.Link as={Link} to='/register'>
 				Register
-					</Nav.Link>
+			</Nav.Link>
 			<Nav.Link as={Link} to='/login'>
 				Login
-					</Nav.Link>
-
-
+			</Nav.Link>
 		</Nav >
 	);
-	// return (
-	// 	<nav className="navbar bg-dark">
-	// 		<Route exact path='/'>
-	// 					<Home />
-	// 				</Route>
-	// 		<h1>
-	// 			<Link to="/nasagallery">
-	// 				<i className="fas fa-code" /> Gallery
-	// 		</Link>
-	// 		</h1>
-	// 		<h1>
-	// 			<Link to="/listview">
-	// 				<i className="fas fa-code" /> ListView
-	// 		</Link>
-	// 		</h1>
-	// 		<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-	// 	</nav>
-	// );
 
 	return (
 		<Navbar bg='dark' variant='dark' expand='lg'>
