@@ -38,8 +38,7 @@ export default function App() {
 						<Home />
 					</Route>
 					<Route path='/nasagallery'>
-						<span> </span>
-						<p2> Gallery</p2>
+
 						<NASAGallery />
 					</Route>
 					<Route path='/listview'>

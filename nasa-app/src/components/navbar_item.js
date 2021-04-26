@@ -6,6 +6,13 @@ import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from '../actions/auth'
 import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles(theme => ({
+	colornav: {
+		backgroundImage: "url(/optin2.jpg)"
+	}
+}));
+
 const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 	const authLinks = (
 		<Nav className='mr-auto'>
@@ -34,9 +41,10 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 
 		</Nav >
 	);
-
+	const classes = useStyles();
 	return (
-		<Navbar bg='dark' variant='dark' expand='lg'>
+
+		<Navbar className={classes.colornav} variant='dark' expand='lg'>
 			<Navbar.Brand as={Link} to='/'>
 				Home
 			</Navbar.Brand>
