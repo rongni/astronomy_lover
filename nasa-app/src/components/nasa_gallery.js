@@ -172,11 +172,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
     }
 
     useEffect(() => {
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
         fetchPhoto();
         async function fetchPhoto() {
             const res = await fetch(
