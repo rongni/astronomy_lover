@@ -29,19 +29,6 @@ export default function App() {
 			if (!localStorage.token) store.dispatch({ type: LOGOUT });
 		});
 	}, []);
-	// return (
-	// 	<Provider store={store}>
-	// 		<Router>
-	// 			<Fragment>
-	// 				<Navbar />
-	// 				<Switch>
-	// 					<Route exact path="/" component={Home} />
-	// 					<Route component={Routes} />
-	// 				</Switch>
-	// 			</Fragment>
-	// 		</Router>
-	// 	</Provider>
-	// );
 
 	return (
 		<Provider store={store}>
