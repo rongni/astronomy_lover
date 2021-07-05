@@ -80,7 +80,7 @@ function UserLibrary({ auth: { user }, loadUser }) {
     const refreshNotes = (data) => {
         let curNotes = []
         if (data['notes'] !== undefined) {
-            data['notes'].forEach(function(entry) {
+            data['notes'].forEach(function (entry) {
                 const content = {
                     'note': entry['note'],
                     'id': entry['_id'],
@@ -124,12 +124,12 @@ function UserLibrary({ auth: { user }, loadUser }) {
     const addNotes = (id) => {
         let curNotes = []
         if (imgNotes !== undefined) {
-            imgNotes.forEach(function(note) {
-                curNotes.push({"note" : note['note']})
+            imgNotes.forEach(function (note) {
+                curNotes.push({ "note": note['note'] })
             })
         }
-        curNotes.push({"note" : newNotes})
-        const content = {"id": id, "notes": curNotes}
+        curNotes.push({ "note": newNotes })
+        const content = { "id": id, "notes": curNotes }
         fetchNotes();
         async function fetchNotes() {
             const res = await fetch(
@@ -142,14 +142,14 @@ function UserLibrary({ auth: { user }, loadUser }) {
             refreshNotes(data)
         }
     }
-    
+
     // handle input change
     const handleChange = (e) => {
         const target = e.target;
         const value = target.value;
         setNewNotes(value)
     }
-    
+
     // handle Add button
     const handleAdd = () => {
         setNewNotes(newNotes)
@@ -157,7 +157,7 @@ function UserLibrary({ auth: { user }, loadUser }) {
         setImgId(0)
         setNewNotes('')
     }
-    
+
     // open popup window
     const modalOpen = (id) => {
         const curId = imagesList[id].id
@@ -166,7 +166,7 @@ function UserLibrary({ auth: { user }, loadUser }) {
         setImgNotes(notes)
         setModal(true)
     }
-    
+
     // open popup window
     const modalClose = () => {
         setNewNotes('')
@@ -193,7 +193,7 @@ function UserLibrary({ auth: { user }, loadUser }) {
         }
         setNewNotes('')
     }
-    
+
     // update edit note id
     const handleEditId = (id) => {
         setEditId(id)
@@ -230,13 +230,13 @@ function UserLibrary({ auth: { user }, loadUser }) {
     }, []);
 
     return (
-        <div style={{ 
-            backgroundImage: "url(https://www.nasa.gov/sites/default/files/thumbnails/image/21226354458_b0fbe5e680_o.jpeg)", 
+        <div style={{
+            backgroundImage: "url(https://www.nasa.gov/sites/default/files/thumbnails/image/21226354458_b0fbe5e680_o.jpeg)",
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             width: '100vw',
             height: '100vh',
-          }}>
+        }}>
             <div style={{
                 paddingTop: 50,
                 paddingLeft: 200,
@@ -251,8 +251,8 @@ function UserLibrary({ auth: { user }, loadUser }) {
             </div>
 
             {/* popup note form  */}
-            <NoteForm show={modal} handleClose={modalClose} inputMsg={newNotes} 
-                handleChange={handleChange} handleAdd={handleAdd} 
+            <NoteForm show={modal} handleClose={modalClose} inputMsg={newNotes}
+                handleChange={handleChange} handleAdd={handleAdd}
                 notesContent={imgNotes} handleDeleteNote={handleDeleteNote}
                 handleEdit={editNotes} handleEditId={handleEditId} />
 

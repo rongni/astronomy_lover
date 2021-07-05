@@ -48,7 +48,7 @@ const Login = ({ login, isAuthenticated }) => {
           <h1 className={classes.textcolor}>SIGN IN</h1>
           <p className={classes.textcolor}>
             <i className="fas fa-user" /> Sign Into Your Account
-      </p >
+          </p >
         </Font>
         <form className="form" onSubmit={onSubmit}>
           <div className="form-group">

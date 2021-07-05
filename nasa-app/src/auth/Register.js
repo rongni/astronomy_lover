@@ -53,7 +53,7 @@ const Register = ({ register, isAuthenticated }) => {
           <h1 className={classes.textcolor}>SIGN UP</h1>
           <p className={classes.textcolor}>
             <i className="fas fa-user" /> Create Your Account
-      </p >
+          </p >
         </Font>
         <form className="form" onSubmit={onSubmit}>
           <div className="form-group">

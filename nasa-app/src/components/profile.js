@@ -5,7 +5,6 @@ import {
     Button,
     Card,
     CardContent,
-    Divider,
     Typography,
     Grid,
     TextField,
@@ -18,13 +17,21 @@ import { deepPurple } from '@material-ui/core/colors'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/auth';
-// const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA3YTQ5NjY5MWE0OTBhMjE1Yzc0NzU3In0sImlhdCI6MTYxODYyNjkxOCw"
-//     + "iZXhwIjoxNjE5MDU4OTE4fQ.uf2gfb7hcqlvWfl6iw5f_JLUu8SmBvfUeiQzglAshsE"
+import Font from 'react-font'
 
 
 
 export let useremail = '';
 const useStyles = makeStyles((theme) => ({
+    editCard: {
+        paddingTop: '40'
+    },
+    profile: {
+        display: 'block',
+        margin: 'auto',
+        width: '60%',
+        color: "#5e35b1"
+    },
 
     button: {
         minWidth: 100,
@@ -134,11 +141,17 @@ function UserProfile({ auth: { token }, loadUser }, props) {
 
     return (
 
-        <div>
+        <div align='center' style={{
+            backgroundImage: "url(/bg.jpg)", backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            width: '100vw',
+            height: '100vh',
+        }}>
 
-            <div>
-                <Card {...props}>
-                    <CardContent>
+            <div className={classes.profile}>
+                <Card {...props} >
+                    <CardContent className={classes.profile}>
                         <Box
                             sx={{
                                 alignItems: 'center',
@@ -149,13 +162,10 @@ function UserProfile({ auth: { token }, loadUser }, props) {
                             <Avatar
                                 src={user.avatar}
                             />
-                            <Typography
-                                color="textPrimary"
-                                gutterBottom
-                                variant="h3"
-                            >
+                            <Font family='Zen Dots'>
                                 {user.name}
-                            </Typography>
+
+                            </Font>
                             <Typography
                                 color="textSecondary"
                                 variant="body1"
@@ -170,22 +180,28 @@ function UserProfile({ auth: { token }, loadUser }, props) {
                             </Typography>
                         </Box>
                     </CardContent>
-                    <Divider />
                 </Card>
 
             </div>
-            <div>
+            <div className={classes.editCard}>
                 <form
                     autoComplete="off"
                     noValidate
                     {...props}
                 >
-                    <Card>
+                    <Card className={classes.profile}>
                         <CardHeader
                             subheader="The information can be edited"
-                            title="Profile"
+                            title={
+                                <Font family='Zen Dots' >
+                                    Profile
+                                </Font>
+
+
+                            }
+
                         />
-                        <Divider />
+
                         <CardContent>
                             <Grid
                                 container
@@ -243,7 +259,7 @@ function UserProfile({ auth: { token }, loadUser }, props) {
                             </Grid>
 
                         </CardContent>
-                        <Divider />
+
                         <Box
                             sx={{
                                 display: 'flex',
@@ -251,19 +267,25 @@ function UserProfile({ auth: { token }, loadUser }, props) {
                                 p: 2
                             }}
                         >
-                            <Button
-                                color="primary"
-                                variant="contained"
+                            <Button className={classes.profile}
+
                                 onClick={handleSumbit}
                             >
-                                Save details
+                                <Font family='Zen Dots' >
+                                    Save details
+                                </Font>
+
                             </Button>
                         </Box>
                     </Card>
                 </form>
             </div>
             <div style={{ paddingTop: 20 }}>
-                <button className={classes.button} onClick={handleDeleteUser}> Delete </button>
+                <button className={classes.button} onClick={handleDeleteUser}>
+                    <Font family='Zen Dots' >
+                        Delete
+                    </Font>
+                </button>
             </div>
         </div>
     );

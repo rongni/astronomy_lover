@@ -11,10 +11,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
-import { createMuiTheme } from '@material-ui/core'
+import { createMuiTheme, Grid } from '@material-ui/core'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Font, { Text } from 'react-font'
 import { loadUser } from '../actions/auth';
 
 const LIMIT = 20;
@@ -33,6 +34,9 @@ const customTheme = createMuiTheme({
     },
 })
 const useStyles = makeStyles((theme) => ({
+    test: {
+        backgroundColor: '#0E0101'
+    },
     root: {
         flexGrow: 1,
     },
@@ -59,6 +63,10 @@ const useStyles = makeStyles((theme) => ({
     input: {
         color: deepPurple[500],
     },
+    text: {
+        paddingTop: 20,
+        color: '#5e35b1'
+    },
     select: {
         minWidth: 200,
         background: 'white',
@@ -77,7 +85,9 @@ const useStyles = makeStyles((theme) => ({
             borderColor: deepPurple[100]
         },
     },
+
     button: {
+
         minWidth: 100,
         background: 'white',
         color: deepPurple[500],
@@ -157,7 +167,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
             return i;
         });
         setImageList(imagesTest)
-        // setImageList(tempList)
+
         console.log(imagesList)
     }
 
@@ -165,12 +175,12 @@ function NASAGallery({ auth: { user }, loadUser }) {
         fetchPhoto();
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=${apiKey}&earth_date=2016-06-03 `
             );
             const data = await res.json();
             setLength(Object.keys(data[['photos']]).length);
-            // setPhotoData(data[['photos']]);
+
             setData(data[['photos']])
         }
     }, []);
@@ -181,7 +191,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
         fetchPhoto();
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
             );
             const data = await res.json();
@@ -195,7 +205,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
         fetchPhoto();
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${apiKey}&earth_date=${dateVal} `
             );
             const data = await res.json();
@@ -264,12 +274,12 @@ function NASAGallery({ auth: { user }, loadUser }) {
 
         async function fetchPhoto() {
             const res = await fetch(
-                // we'll update the KEYHERE soon!
+
                 `/api/library/${email}`, {
                 method: 'PUT',
-                // mode: 'no-cors',
+
                 headers: { 'Content-Type': 'application/json' },
-                // header: myHeaders,
+
                 body: JSON.stringify(data_two),
             });
             const data = await res.json();
@@ -317,60 +327,105 @@ function NASAGallery({ auth: { user }, loadUser }) {
     }
 
     return (
-        <div className="Test">
-            <FormControl>
-                <Select
-                    disableUnderline
-                    classes={{ root: classes.select }}
-                    MenuProps={menuProps}
-                    IconComponent={iconComponent}
-                    value={rover}
-                    onChange={handleChangeRover}
-                >
-                    <MenuItem value={'curiosity'}>Curiosity</MenuItem>
-                    <MenuItem value={'opportunity'}>Opportunity</MenuItem>
-                    <MenuItem value={'spirit'}>Spirit</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl>
-                <Select
-                    disableUnderline
-                    classes={{ root: classes.select }}
-                    MenuProps={menuProps}
-                    IconComponent={iconComponent}
-                    value={val}
-                    onChange={handleChange}
-                >
-                    <MenuItem value={'fhaz'}>Front Hazard Avoidance Camera</MenuItem>
-                    <MenuItem value={'rhaz'}>Rear Hazard Avoidance Camera</MenuItem>
-                    <MenuItem value={'navcam'}>Navigation Camera</MenuItem>
-                </Select>
-            </FormControl>
-            <MuiThemeProvider theme={customTheme}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                        className={classes.button}
-                        disableToolbar
-                        variant="inline"
-                        format="yyyy-MM-dd"
-                        paddingLeft='20'
-                        // margin="normal"
-                        id="date-picker-inline"
-                        label="earth date"
-                        value={selectedDate}
-                        onChange={(date, value) => { handleDateChange(date, value); }}
-                        KeyboardButtonProps={{
-                            className: classes.input,
-                            "aria-label": "change date"
-                        }}
-                    />
-                </MuiPickersUtilsProvider>
-            </MuiThemeProvider>
-            <div style={{ paddingLeft: 20 }}>
-                <button className={classes.button} onClick={handleSumbit}> Submit </button>
+        <div className="Test" alignItems='left' style={{
+            backgroundImage: "url(/commonbg.jpg)",
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            height: '100 %'
+
+
+        }}>
+            <div>
+                <Font family='Zen Dots'>
+                    <h1 align="center" className={classes.text}>Mars Gallery</h1>
+                    <br />
+                    <br />
+                </Font>
             </div>
-            <div style={{ paddingLeft: 20 }}>
-                <button className={classes.button} onClick={handleSumbitDate}> Submit2 </button>
+            <div>
+                <Grid
+                    container
+                    direction="row"
+
+                    justify="space-evenly"
+                >
+                    <FormControl>
+                        <Select
+                            disableUnderline
+                            classes={{ root: classes.select }}
+                            MenuProps={menuProps}
+                            IconComponent={iconComponent}
+                            value={rover}
+                            onChange={handleChangeRover}
+                        >
+                            <MenuItem value={'curiosity'}>Curiosity</MenuItem>
+                            <MenuItem value={'opportunity'}>Opportunity</MenuItem>
+                            <MenuItem value={'spirit'}>Spirit</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <FormControl className='section1'>
+                        <Select
+                            disableUnderline
+                            classes={{ root: classes.select }}
+                            MenuProps={menuProps}
+                            IconComponent={iconComponent}
+                            value={val}
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={'fhaz'}>Front Hazard Avoidance Camera</MenuItem>
+                            <MenuItem value={'rhaz'}>Rear Hazard Avoidance Camera</MenuItem>
+                            <MenuItem value={'navcam'}>Navigation Camera</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <button className={classes.button} onClick={handleSumbit}> Submit </button>
+                </Grid>
+            </div>
+            <div style={{ paddingTop: 20 }}>
+                <Grid
+                    container
+                    direction="row"
+                    justify="space-evenly"
+
+                // alignItems="center"
+                >
+                    <FormControl className='section1'>
+                        <Select
+                            disableUnderline
+                            classes={{ root: classes.select }}
+                            MenuProps={menuProps}
+                            IconComponent={iconComponent}
+                            value={rover}
+                            onChange={handleChangeRover}
+                        >
+                            <MenuItem value={'curiosity'}>Curiosity</MenuItem>
+                            <MenuItem value={'opportunity'}>Opportunity</MenuItem>
+                            <MenuItem value={'spirit'}>Spirit</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <MuiThemeProvider theme={customTheme}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                className={classes.button}
+                                disableToolbar
+                                variant="inline"
+                                format="yyyy-MM-dd"
+
+
+                                id="date-picker-inline"
+                                value={selectedDate}
+                                onChange={(date, value) => { handleDateChange(date, value); }}
+                                KeyboardButtonProps={{
+                                    className: classes.input,
+                                    "aria-label": "change date"
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
+                    </MuiThemeProvider>
+                    <button className={classes.button} onClick={handleSumbitDate}> Submit </button>
+                </Grid>
             </div>
 
             <div style={{
@@ -385,10 +440,17 @@ function NASAGallery({ auth: { user }, loadUser }) {
                 <Gallery images={firstLoad ? imagesList.slice(0, LIMIT) : list} showLightboxThumbnails onSelectImage={onSelectImage} />
             </div>
             <div style={{ paddingTop: 20 }}>
-                {showMore && <button onClick={loadMore}> Load More </button>}
-            </div>
-            <div style={{ paddingTop: 20 }}>
-                <button className={classes.button} onClick={handleAddImage}> Add </button>
+                <Grid
+                    container
+                    direction="row"
+                    justify="space-evenly"
+                    alignItems="center"
+                >
+                    {showMore && <button className={classes.button} onClick={loadMore}> Load More </button>}
+
+                    <button className={classes.button} onClick={handleAddImage}> Add </button>
+
+                </Grid>
             </div>
         </div >
     );
