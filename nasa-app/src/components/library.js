@@ -1,52 +1,27 @@
 import Gallery from 'react-grid-gallery';
 import { useState, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loadUser } from '../actions/auth';
+import NoteForm from "./NoteForm";
+import { useStyles } from './utils'
 
-const useStyles = makeStyles((theme) => ({
-
-    button: {
-        minWidth: 100,
-        background: 'white',
-        color: deepPurple[500],
-        fontWeight: 300,
-        borderStyle: 'none',
-        borderWidth: 2,
-        borderRadius: 12,
-        paddingLeft: 14,
-        paddingTop: 14,
-        paddingBottom: 15,
-        boxShadow: '0px 5px 8px -3px rgba(0,0,0,0.14)',
-        "&:focus": {
-            borderRadius: 12,
-            background: 'white',
-            borderColor: deepPurple[500]
-        },
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-
-}));
 function UserLibrary({ auth: { user }, loadUser }) {
-
-
     const [imagesList, setImageList] = useState([])
+    const [newNotes, setNewNotes] = useState('')
+    const [imgId, setImgId] = useState(0)
+    const [modal, setModal] = useState(false)
+    const [imgNotes, setImgNotes] = useState([])
+    const [editId, setEditId] = useState('');
+
+    // get user info
     let email = localStorage.getItem('email')
     if (user) {
         email = user.email
         localStorage.setItem('email', user.email);
     }
 
-    const classes = useStyles();
-
-
-
+    // set gallary attribute
     function setData(data) {
         var tempList = [];
         data.forEach(function (entry) {
@@ -58,13 +33,10 @@ function UserLibrary({ auth: { user }, loadUser }) {
             singObj['id'] = entry.id
             tempList.push(singObj)
         });
-
         setImageList(tempList)
     }
-    function openDetails(id) {
-        var image = imagesList[id]
-        console.log(image)
-    }
+
+    // handle image's isSelected state
     function onSelectImage(index, image) {
         var images = this.state.images.slice();
         var img = images[index];
@@ -77,8 +49,9 @@ function UserLibrary({ auth: { user }, loadUser }) {
             images: images
         });
     }
-    const handleDeleteImage = (event) => {
 
+    // handle delete image
+    const handleDeleteImage = (event) => {
         event.preventDefault();
         let seletimageList = []
         imagesList.forEach(function (entry) {
@@ -88,38 +61,151 @@ function UserLibrary({ auth: { user }, loadUser }) {
                 seletimageList.push(singObj)
             }
         });
-        const imageDeleteList =
-        {
-            'image': seletimageList
-        }
+        const imageDeleteList = { 'image': seletimageList }
         fetchPhoto();
         async function fetchPhoto() {
             const res = await fetch(
-
                 `/api/library/${email}/images`, {
                 method: 'Delete',
-
                 headers: { 'Content-Type': 'application/json' },
-
                 body: JSON.stringify(imageDeleteList),
-            }
-
-            );
+            });
             const data = await res.json();
             console.log(data)
         }
         window.location.reload();
-
-
-
     };
+
+    // refresh the notes of the image
+    const refreshNotes = (data) => {
+        let curNotes = []
+        if (data['notes'] !== undefined) {
+            data['notes'].forEach(function (entry) {
+                const content = {
+                    'note': entry['note'],
+                    'id': entry['_id'],
+                }
+                curNotes.push(content)
+            })
+            console.log(curNotes)
+            setImgNotes(curNotes)
+        }
+    }
+
+    // get notes of a image
+    const getNotes = (id) => {
+        fetchNotes();
+        async function fetchNotes() {
+            const res = await fetch(
+                `/api/notes/${id}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const data = await res.json();
+            refreshNotes(data)
+        }
+    }
+
+    // handle delete note for image
+    const handleDeleteNote = (id) => {
+        fetchNotes();
+        async function fetchNotes() {
+            const res = await fetch(
+                `/api/notes/${imgId}/edit/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const data = await res.json();
+            refreshNotes(data)
+        }
+    }
+
+    // add notes for image
+    const addNotes = (id) => {
+        let curNotes = []
+        if (imgNotes !== undefined) {
+            imgNotes.forEach(function (note) {
+                curNotes.push({ "note": note['note'] })
+            })
+        }
+        curNotes.push({ "note": newNotes })
+        const content = { "id": id, "notes": curNotes }
+        fetchNotes();
+        async function fetchNotes() {
+            const res = await fetch(
+                `/api/notes`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(content)
+            });
+            const data = await res.json();
+            refreshNotes(data)
+        }
+    }
+
+    // handle input change
+    const handleChange = (e) => {
+        const target = e.target;
+        const value = target.value;
+        setNewNotes(value)
+    }
+
+    // handle Add button
+    const handleAdd = () => {
+        setNewNotes(newNotes)
+        addNotes(imgId)
+        setImgId(0)
+        setNewNotes('')
+    }
+
+    // open popup window
+    const modalOpen = (id) => {
+        const curId = imagesList[id].id
+        setImgId(curId)
+        const notes = getNotes(curId)
+        setImgNotes(notes)
+        setModal(true)
+    }
+
+    // open popup window
+    const modalClose = () => {
+        setNewNotes('')
+        setImgNotes([])
+        setModal(false)
+    }
+
+    // handle notes edit for image
+    const editNotes = () => {
+        console.log(newNotes)
+        const content = {
+            note: newNotes
+        }
+        fetchNotes();
+        async function fetchNotes() {
+            const res = await fetch(
+                `/api/notes/${imgId}/edit/${editId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(content)
+            });
+            const data = await res.json();
+            refreshNotes(data)
+        }
+        setNewNotes('')
+    }
+
+    // update edit note id
+    const handleEditId = (id) => {
+        setEditId(id)
+        console.log(id)
+    }
+
+    const classes = useStyles();
 
     useEffect(() => {
         fetchPhoto();
-
         async function fetchPhoto() {
             const res = await fetch(
-
                 `/api/library/${email} `
             );
             const data = await res.json();
@@ -131,29 +217,26 @@ function UserLibrary({ auth: { user }, loadUser }) {
                     'image': []
                 }
                 postLibrary();
-
-
                 async function postLibrary() {
                     const res = await fetch(
-
                         '/api/library', {
                         method: 'POST',
-
                         headers: { 'Content-Type': 'application/json' },
-
                         body: JSON.stringify(postData),
-                    }
-
-                    );
+                    });
                 }
-
             }
-
         }
-
     }, []);
+
     return (
-        <div>
+        <div style={{
+            backgroundImage: "url(https://www.nasa.gov/sites/default/files/thumbnails/image/21226354458_b0fbe5e680_o.jpeg)",
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            width: '100vw',
+            height: '100vh',
+        }}>
             <div style={{
                 paddingTop: 50,
                 paddingLeft: 200,
@@ -163,14 +246,20 @@ function UserLibrary({ auth: { user }, loadUser }) {
                 minHeight: "1px",
                 width: "100%",
             }}>
-                <Gallery images={imagesList} showLightboxThumbnails onSelectImage={onSelectImage} />
+                {/* display images as a gallery */}
+                <Gallery images={imagesList} onClickThumbnail={(e) => modalOpen(e)} onSelectImage={onSelectImage} />
             </div>
-            <div style={{ paddingTop: 20 }}>
-                <button className={classes.button} onClick={handleDeleteImage}> Delete </button>
-            </div>
+
+            {/* popup note form  */}
+            <NoteForm show={modal} handleClose={modalClose} inputMsg={newNotes}
+                handleChange={handleChange} handleAdd={handleAdd}
+                notesContent={imgNotes} handleDeleteNote={handleDeleteNote}
+                handleEdit={editNotes} handleEditId={handleEditId} />
+
+            {/* delete seleted images  */}
+            <button className={classes.button} onClick={handleDeleteImage}> Delete Image </button>
         </div>
     )
-
 }
 UserLibrary.propTypes = {
     auth: PropTypes.object.isRequired
@@ -179,6 +268,5 @@ UserLibrary.propTypes = {
 const mapStateToProps = (state) => ({
     auth: state.auth
 });
-
 
 export default connect(mapStateToProps, { loadUser })(UserLibrary);

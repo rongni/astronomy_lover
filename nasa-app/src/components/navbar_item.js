@@ -21,27 +21,23 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 			</Nav.Link>
 			<Nav.Link as={Link} to='/profile'>
 				MyProfile
-					</Nav.Link>
+			</Nav.Link>
 			<Nav.Link onClick={logout} as={Link} to='/'>
 				Logout
-					</Nav.Link>
-
+			</Nav.Link>
 		</Nav >
 	);
 	const guestLinks = (
 		<Nav className='mr-auto'>
 			<Nav.Link as={Link} to='/register'>
 				Register
-					</Nav.Link>
+			</Nav.Link>
 			<Nav.Link as={Link} to='/login'>
 				Login
-					</Nav.Link>
-
-
-
+			</Nav.Link>
 		</Nav >
 	);
-	const classes = useStyles();
+
 	return (
 
 		<Navbar className={classes.colornav} variant='dark' expand='lg' sticky="top">

@@ -1,8 +1,7 @@
 # A Webpage called Astronomy Lovers
-Peiyi Chen (peiyic2), Rongxin Ni (rni4) | Moderator: Jeffrey Taylor-Chang (jjt4) Zehua Chen (zehuac2)
+Peiyi Chen , Rongxin Ni 
 
-
-This is a Astronomy Lover app about a project for CS242
+This is a Astronomy Lover app
 
 ## Abstract
 ### Project Purpose

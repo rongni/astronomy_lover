@@ -13,7 +13,6 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { createMuiTheme, Grid } from '@material-ui/core'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Font, { Text } from 'react-font'
@@ -173,10 +172,12 @@ function NASAGallery({ auth: { user }, loadUser }) {
     }
 
     useEffect(() => {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
         fetchPhoto();
-
         async function fetchPhoto() {
             const res = await fetch(
 
@@ -187,17 +188,13 @@ function NASAGallery({ auth: { user }, loadUser }) {
 
             setData(data[['photos']])
         }
-
     }, []);
-
 
     const handleSumbit = (evt) => {
         evt.preventDefault();
         setImageList([])
         fetchPhoto();
-
         async function fetchPhoto() {
-
             const res = await fetch(
 
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&&camera=${val}&api_key=${apiKey} `
@@ -205,19 +202,13 @@ function NASAGallery({ auth: { user }, loadUser }) {
             const data = await res.json();
             setLength(Object.keys(data[['photos']]).length);
             setData(data[['photos']])
-
-
-
         }
     };
     const handleSumbitDate = (evt) => {
         evt.preventDefault();
         setImageList([])
-
         fetchPhoto();
-
         async function fetchPhoto() {
-
             const res = await fetch(
 
                 `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${apiKey}&earth_date=${dateVal} `
@@ -225,8 +216,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
             const data = await res.json();
             setLength(Object.keys(data[['photos']]).length);
             setData(data[['photos']])
-
-
         }
     };
     const customTagStyle = {
@@ -243,7 +232,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
         verticalAlign: "baseline",
         margin: "2px"
     };
-
 
     function setCustomTags(i) {
         return (
@@ -289,7 +277,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
         const email = user.email;
         fetchPhoto();
 
-
         async function fetchPhoto() {
             const res = await fetch(
 
@@ -299,9 +286,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
                 headers: { 'Content-Type': 'application/json' },
 
                 body: JSON.stringify(data_two),
-            }
-
-            );
+            });
             const data = await res.json();
             console.log(data)
         }
@@ -311,7 +296,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
     const handleChangeRover = (event) => {
         event.preventDefault();
         setRover(event.target.value);
-
     };
 
     const iconComponent = (props) => {
@@ -346,8 +330,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
             images: images
         });
     }
-
-
 
     return (
         <div className="Test" alignItems='left' style={{
@@ -451,9 +433,6 @@ function NASAGallery({ auth: { user }, loadUser }) {
                 </Grid>
             </div>
 
-
-
-
             <div style={{
                 paddingTop: 50,
                 paddingLeft: 200,
@@ -479,10 +458,7 @@ function NASAGallery({ auth: { user }, loadUser }) {
                 </Grid>
             </div>
         </div >
-
-
     );
-
 }
 
 NASAGallery.propTypes = {
