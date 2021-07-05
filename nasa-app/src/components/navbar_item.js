@@ -37,7 +37,7 @@ const NavbarItem = ({ auth: { isAuthenticated }, logout }) => {
 			</Nav.Link>
 		</Nav >
 	);
-
+	const classes = useStyles();
 	return (
 
 		<Navbar className={classes.colornav} variant='dark' expand='lg' sticky="top">
