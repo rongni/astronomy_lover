@@ -58,7 +58,7 @@
 		"eject": "react-scripts eject",
 		"dev": "concurrently \"yarn nodemon server\" \"yarn start\"",
 		"start-server": "nodemon server --ignore frontend",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install && yarn build"
+		"heroku-postbuild": "yarn dev"
 	},
 	"eslintConfig": {
 		"extends": [
