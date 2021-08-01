@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://rni4:110828@cluster0.lgoqf.mongodb.net/NASA?retryWrites=true&w=majority",
-        "jwtSecret": "secret"
-}

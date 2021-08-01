@@ -57,7 +57,8 @@
 		"test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
 		"eject": "react-scripts eject",
 		"dev": "concurrently \"yarn nodemon server\" \"yarn start\"",
-		"start-server": "nodemon server --ignore frontend"
+		"start-server": "nodemon server --ignore frontend",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install && yarn build"
 	},
 	"eslintConfig": {
 		"extends": [

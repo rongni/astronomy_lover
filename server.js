@@ -1,6 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
-
+const path = require('path')
 
 
 
@@ -15,12 +15,17 @@ app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/library', require('./routes/api/library'));
 app.use('/api/notes', require('./routes/api/notes'));
-app.get('/', (req, res) => res.send('Its working!'));
 
 
-app.use(express.json());
 
 
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    });
+}
 
 const PORT = process.env.PORT || 5000;
 
